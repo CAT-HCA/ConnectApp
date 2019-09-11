@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Leagues & Teams</title>
+</head>
+
+<body class="container">
+    <h1>Hello, there!</h1>
+    <div class='container'>
+        <button class="btn btn-info" id="leagueBtn">Leagues</button>
+        <button class="btn btn-info" id="teamBtn">Teams</button>
+    </div>
+    <div class='container'>
+        <ul id="dataList">
+
+        </ul>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $("#leagueBtn").click(function () {
+            callAJAX("leagues");
+        })
+        $("#teamBtn").click(function () {
+            callAJAX("teams");
+        })
+
+        function callAJAX(path) {
+            $("#dataList").empty();
+            $.getJSON("http://localhost:3000/" + path, function () {
+            })
+                .done(function (data) {
+                    console.log(data);
+                    appendData(path, data);
+                    
+                })
+                .fail(function () {
+                    console.log("Error connecting to server")
+                })
+        }
+
+        function appendData(path, data) {
+            for (let i = 0; i < data.length; i++) {
+                let prop;
+                if (path == "leagues") {
+                    prop = data[i].Name;
+                } else if (path == "teams") {
+                    prop = data[i].TeamName;
+                }
+                $("#dataList").append(
+                    $("<li />").html(prop)
+                )
+            }
+        }
+    </script>
+</body>
+
+</html>

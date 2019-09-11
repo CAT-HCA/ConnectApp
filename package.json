@@ -1,0 +1,24 @@
+{
+  "name": "connectapp",
+  "version": "1.0.0",
+  "description": "Connect App practice",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "dev": "nodemon server --inspect"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CAT-HCA/ConnectApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CAT-HCA/ConnectApp/issues"
+  },
+  "homepage": "https://github.com/CAT-HCA/ConnectApp#readme",
+  "dependencies": {
+    "connect": "^3.7.0"
+  }
+}
